@@ -9,3 +9,22 @@ Input Absensi Harian
 Laporan Absensi Harian
 Laporan Absensi Per Siswa
 Keluar: Logout dari sistem
+
+Rancangan Database :
+Tabel siswa: 
+- id_siswa (integer): Primary key, digunakan untuk mengidentifikasi siswa secara
+unik. 
+- nama_siswa (varchar): Menyimpan nama siswa. 
+- nis (varchar): Menyimpan Nomor Induk Siswa. 
+- kelas (varchar): Menyimpan kelas siswa. 
+
+Tabel absensi: 
+- id_absensi (integer): Primary key, mengidentifikasi setiap record absensi. 
+- id_siswa (integer): Foreign key yang mengacu pada kolom id_siswa di tabel siswa. Ini menghubungkan catatan absensi dengan siswa tertentu. 
+- tanggal (date): Menyimpan tanggal absensi. 
+- status (enum): Menyimpan status kehadiran, seperti "hadir" atau "tidak hadir". 
+
+Relasi: 
+- Relasi antara tabel siswa dan absensi adalah one-to-many (satu siswa dapat memiliki
+banyak catatan absensi). Ini direpresentasikan oleh foreign key id_siswa di tabel
+absensi yang mengacu ke id_siswa di tabel siswa.
