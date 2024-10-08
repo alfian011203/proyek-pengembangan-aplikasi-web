@@ -1,0 +1,49 @@
+sistem presensi siswa menggunakan native PHP:
+--------- judul ----------------
+membuat presensi siswa menggunakan native php 
+pada tugas ke-4 kali ini kelompok kami memiliki dua tabel utama dalam database 
+yaitu : 
+siswa: Menyimpan data siswa (ID siswa, nama, NIS, kelas).
+absensi: Menyimpan data absensi (ID absensi, ID siswa, tanggal, status).
+---- Analisis Kebutuhan: --------
+Fungsionalitas:
+Menambahkan data siswa baru.
+Mengedit data siswa yang sudah ada.
+Menghapus data siswa.
+Mencatat kehadiran siswa.
+Melihat riwayat kehadiran siswa.
+Membuat laporan kehadiran.
+Data:
+Data siswa (nama, NIS, kelas).
+Data absensi (tanggal, status).
+Pengguna:
+Admin (untuk mengelola data siswa dan absensi).
+Guru (untuk mencatat kehadiran siswa).
+Tampilan:
+Antarmuka yang sederhana dan mudah digunakan.
+Tampilan data siswa dan absensi yang jelas.
+Laporan kehadiran yang dapat dicetak atau diunduh.
+------------ Implementasi dengan File Native PHP ------------------
+1. Struktur Data:
+Siswa 
+class Siswa {
+    public $id;
+    public $nama;
+    public $nis;
+    public $kelas;
+}
+Absensi:
+class Absensi {
+    public $id;
+    public $id_siswa;
+    public $tanggal;
+    public $status;
+}
+2. Fungsi-fungsi Utama:
+SimpanDataSiswa: Menyimpan data siswa ke dalam file (misalnya, dalam format JSON atau serialisasi PHP).
+AmbilDataSiswa: Mengambil data siswa dari file.
+SimpanDataAbsensi: Menyimpan data absensi ke dalam file.
+AmbilDataAbsensi: Mengambil data absensi dari file.
+CariSiswa: Mencari data siswa berdasarkan ID atau nama.
+BuatLaporan: Membuat laporan kehadiran dalam bentuk HTML atau PDF.
+
