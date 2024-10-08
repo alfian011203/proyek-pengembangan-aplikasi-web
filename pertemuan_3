@@ -28,3 +28,28 @@ Relasi:
 - Relasi antara tabel siswa dan absensi adalah one-to-many (satu siswa dapat memiliki
 banyak catatan absensi). Ini direpresentasikan oleh foreign key id_siswa di tabel
 absensi yang mengacu ke id_siswa di tabel siswa.
+
+Rancangan Input/Output :
+2. Rancangan Input/Output
+Input:
+Data Siswa:
+
+Nama siswa
+NIS
+Kelas
+
+Absensi Harian:
+Nama siswa (pilihan dari dropdown berdasarkan data siswa yang ada)
+Tanggal (auto-fill dengan tanggal hari ini)
+Status kehadiran (pilihan: Hadir, Sakit, Izin, Alpa)
+
+Output:
+Laporan absensi harian: Menampilkan daftar siswa dan status kehadiran mereka pada tanggal tertentu.
+Laporan absensi per siswa: Menampilkan absensi siswa tertentu dalam periode waktu tertentu (misalnya: 1 minggu, 1 bulan).
+Contoh Tampilan Output:
+
+Laporan Harian (30 September 2024):
+Nama Siswa: Budi Santoso - Hadir
+Nama Siswa: Ani Pratiwi - Sakit
+Nama Siswa: Adi Susanto - Izin
+Nama Siswa: Dika Rahman - Hadir
