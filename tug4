@@ -24,26 +24,51 @@ Antarmuka yang sederhana dan mudah digunakan.
 Tampilan data siswa dan absensi yang jelas.
 Laporan kehadiran yang dapat dicetak atau diunduh.
 ------------ Implementasi dengan File Native PHP ------------------
-1. Struktur Data:
-Siswa 
-class Siswa {
-    public $id;
-    public $nama;
-    public $nis;
-    public $kelas;
-}
-Absensi:
-class Absensi {
-    public $id;
-    public $id_siswa;
-    public $tanggal;
-    public $status;
-}
-2. Fungsi-fungsi Utama:
-SimpanDataSiswa: Menyimpan data siswa ke dalam file (misalnya, dalam format JSON atau serialisasi PHP).
-AmbilDataSiswa: Mengambil data siswa dari file.
-SimpanDataAbsensi: Menyimpan data absensi ke dalam file.
-AmbilDataAbsensi: Mengambil data absensi dari file.
-CariSiswa: Mencari data siswa berdasarkan ID atau nama.
-BuatLaporan: Membuat laporan kehadiran dalam bentuk HTML atau PDF.
 
+kode untuk koneksi ke Database :
+<?php
+$host = 'localhost';  // atau nama host dari web host Anda
+$user = 'root';  // username database
+$password = '';  // password database
+$dbname = 'sekolah';  // nama database
+
+// Membuat koneksi
+$conn = new mysqli($host, $user, $password, $dbname);
+
+// Memeriksa koneksi
+if ($conn->connect_error) {
+    die("Koneksi gagal: " . $conn->connect_error);
+}
+echo "Koneksi berhasil";
+
+// Menutup koneksi
+$conn->close();
+?>
+
+kode untuk menampilkan data :
+<?php
+$conn = new mysqli('localhost', 'root', '', 'sekolah');
+
+if ($conn->connect_error) {
+    die("Koneksi gagal: " . $conn->connect_error);
+}
+
+$sql = "SELECT a.id_absensi, s.nama_siswa, a.tanggal, a.status 
+        FROM absensi a 
+        JOIN siswa s ON a.id_siswa = s.id_siswa";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    echo "<table><tr><th>ID Absensi</th><th>Nama Siswa</th><th>Tanggal</th><th>Status</th></tr>";
+    while($row = $result->fetch_assoc()) {
+        echo "<tr><td>" . $row["id_absensi"]. "</td><td>" . $row["nama_siswa"]. "</td><td>" . $row["tanggal"]. "</td><td>" . $row["status"]. "</td></tr>";
+    }
+    echo "</table>";
+} else {
+    echo "0 hasil";
+}
+
+$conn->close();
+?>
+
+Pembahasan dari source code :
