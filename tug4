@@ -72,3 +72,10 @@ $conn->close();
 ?>
 
 Pembahasan dari source code :
+Program di atas terdiri dari dua bagian. Bagian pertama berfungsi untuk membuat koneksi ke database
+MySQL menggunakan informasi host, username, password, dan nama database, kemudian memeriksa apakah
+koneksi berhasil atau gagal. Jika berhasil, program akan menampilkan pesan "Koneksi berhasil" dan 
+menutup koneksi setelahnya. Bagian kedua menjalankan query SQL untuk mengambil data dari tabel absensi
+dan siswa, kemudian menampilkan hasilnya dalam bentuk tabel HTML yang memuat kolom ID Absensi, Nama Siswa,
+Tanggal, dan Status. Jika tidak ada data yang ditemukan, program akan menampilkan pesan "0 hasil". 
+Setelah itu, koneksi ke database ditutup.
