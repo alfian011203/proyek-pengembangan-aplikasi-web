@@ -1,0 +1,117 @@
+<!-- Koneksi ke Database -->
+<?php
+$host = 'localhost';  // atau nama host dari web host Anda
+$user = 'root';  // username database
+$password = '';  // password database
+$dbname = 'sekolah';  // nama database
+
+// Membuat koneksi
+$conn = new mysqli($host, $user, $password, $dbname);
+
+// Memeriksa koneksi
+if ($conn->connect_error) {
+    die("Koneksi gagal: " . $conn->connect_error);
+}
+echo "Koneksi berhasil";
+
+// Menutup koneksi
+$conn->close();
+?>
+
+<!-- Tampilan Utama -->
+<?php
+$host = 'localhost';
+$user = 'root';
+$password = '';
+$dbname = 'sekolah';
+
+// Membuat koneksi
+$conn = new mysqli($host, $user, $password, $dbname);
+
+// Memeriksa koneksi
+if ($conn->connect_error) {
+    die("Koneksi gagal: " . $conn->connect_error);
+}
+
+// Read (Menampilkan Data Absensi)
+$sql = "SELECT a.id_absensi, s.nama_siswa, a.tanggal, a.status 
+        FROM absensi a 
+        JOIN siswa s ON a.id_siswa = s.id_siswa";
+$result = $conn->query($sql);
+?>
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Absensi</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1 class="mb-4">Daftar Absensi</h1>
+    <a href="create.php" class="btn btn-primary mb-3">Tambah Absensi</a>
+
+    <?php if ($result->num_rows > 0): ?>
+        <table class="table table-bordered table-striped">
+            <thead class="thead-light">
+                <tr>
+                    <th>ID Absensi</th>
+                    <th>Nama Siswa</th>
+                    <th>Tanggal</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while($row = $result->fetch_assoc()): ?>
+                    <tr>
+                        <td><?php echo $row["id_absensi"]; ?></td>
+                        <td><?php echo $row["nama_siswa"]; ?></td>
+                        <td><?php echo $row["tanggal"]; ?></td>
+                        <td><?php echo $row["status"]; ?></td>
+                        <td>
+                            <a href='edit.php?edit=<?php echo $row["id_absensi"]; ?>' class='btn btn-warning btn-sm'>Edit</a>
+                            <a href='?delete=<?php echo $row["id_absensi"]; ?>' class='btn btn-danger btn-sm' onclick='return confirm("Anda yakin ingin menghapus?");'>Hapus</a>
+                        </td>
+                    </tr>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
+    <?php else: ?>
+        <div class="alert alert-warning" role="alert">0 hasil</div>
+    <?php endif; ?>
+
+    <?php
+    // Delete (Hapus Data)
+    if (isset($_GET['delete'])) {
+        $id_absensi = $_GET['delete'];
+        $sql_delete = "DELETE FROM absensi WHERE id_absensi = $id_absensi";
+        if ($conn->query($sql_delete) === TRUE) {
+            echo "<div class='alert alert-success' role='alert'>Data berhasil dihapus!</div>";
+            header("Location: pertemuan4_1.php"); // Refresh halaman setelah hapus
+            exit(); // Menyudahi eksekusi script agar tidak ada output tambahan
+        } else {
+            echo "<div class='alert alert-danger' role='alert'>Error: " . $conn->error . "</div>";
+        }
+    }
+
+    // Menutup koneksi
+    $conn->close();
+    ?>
+</div>
+
+<!-- Bootstrap JS dan dependensi -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+<!-- Tampilan Create -->
+
+<!-- Tampilan Edit -->
+
