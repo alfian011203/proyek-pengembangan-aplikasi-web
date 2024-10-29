@@ -54,6 +54,9 @@
 
 
 <!-- Pembahasan Menampilkan data CI -->
+Untuk menampilkan data di CodeIgniter, langkahnya meliputi 
+pembuatan model untuk mengambil data dari database, lalu mengirimkan data tersebut ke controller 
+dan akhirnya menampilkannya di view dengan sintaks PHP yang tepat.
 
 <!-- cara kerja pada framework CI -->
 Pada framework CodeIgniter, proses kerja dimulai saat pengguna mengirimkan permintaan melalui URL, yang kemudian diteruskan
