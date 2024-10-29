@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 }
 echo "Koneksi berhasil";
 
-// Menutup koneksi
+// Menutup koneksihttps://github.com/alfian011203/proyek-pengembangan-aplikasi-web/edit/main/CRUD1
 $conn->close();
 ?>
 
@@ -112,6 +112,193 @@ $result = $conn->query($sql);
 </html>
 
 <!-- Tampilan Create -->
+<?php
+$host = 'localhost';
+$user = 'root';
+$password = '';
+$dbname = 'sekolah';
+
+// Membuat koneksi
+$conn = new mysqli($host, $user, $password, $dbname);
+
+// Memeriksa koneksi
+if ($conn->connect_error) {
+    die("Koneksi gagal: " . $conn->connect_error);
+}
+
+// Create (Insert Data)
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create_absensi'])) {
+    $id_siswa = $_POST['id_siswa'];
+    $tanggal = $_POST['tanggal'];
+    $status = $_POST['status'];
+
+    // Menyimpan data absensi
+    $sql = "INSERT INTO absensi (id_siswa, tanggal, status) VALUES ('$id_siswa', '$tanggal', '$status')";
+    if ($conn->query($sql) === TRUE) {
+        echo "<div class='alert alert-success' role='alert'>Data absensi berhasil ditambahkan!</div>";
+        header("Location: pertemuan4_1.php"); // Kembali ke halaman utama setelah berhasil
+        exit();
+    } else {
+        echo "<div class='alert alert-danger' role='alert'>Error: " . $sql . "<br>" . $conn->error . "</div>";
+    }
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create_siswa'])) {
+    $nama_siswa = $_POST['nama_siswa'];
+
+    // Menyimpan data siswa baru
+    $sql_siswa = "INSERT INTO siswa (nama_siswa) VALUES ('$nama_siswa')";
+    if ($conn->query($sql_siswa) === TRUE) {
+        echo "<div class='alert alert-success' role='alert'>Data siswa berhasil ditambahkan!</div>";
+    } else {
+        echo "<div class='alert alert-danger' role='alert'>Error: " . $sql_siswa . "<br>" . $conn->error . "</div>";
+    }
+}
+
+// Read (Menampilkan Data Siswa)
+$sql_siswa = "SELECT * FROM siswa";
+$result_siswa = $conn->query($sql_siswa);
+?>
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Absensi</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1 class="mb-4">Input Absensi</h1>
+    <form method="POST" action="">
+        <div class="form-group">
+            <label for="id_siswa">Nama Siswa:</label>
+            <select name="id_siswa" class="form-control" required>
+                <?php if ($result_siswa->num_rows > 0): ?>
+                    <?php while ($row_siswa = $result_siswa->fetch_assoc()): ?>
+                        <option value="<?php echo $row_siswa['id_siswa']; ?>"><?php echo $row_siswa['nama_siswa']; ?></option>
+                    <?php endwhile; ?>
+                <?php endif; ?>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="tanggal">Tanggal:</label>
+            <input type="date" name="tanggal" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="status">Status:</label>
+            <select name="status" class="form-control" required>
+                <option value="Hadir">Hadir</option>
+                <option value="Tidak Hadir">Tidak Hadir</option>
+            </select>
+        </div>
+        <button type="submit" name="create_absensi" class="btn btn-primary">Tambah Absensi</button>
+    </form>
+
+    <hr>
+
+    <h2 class="mt-5">Tambah Siswa Baru</h2>
+    <form method="POST" action="">
+        <div class="form-group">
+            <label for="nama_siswa">Nama Siswa:</label>
+            <input type="text" name="nama_siswa" class="form-control" required>
+        </div>
+        <button type="submit" name="create_siswa" class="btn btn-primary">Tambah Siswa</button>
+    </form>
+</div>
+
+<!-- Bootstrap JS dan dependensi -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+<?php
+// Menutup koneksi
+$conn->close();
+?>
 
 <!-- Tampilan Edit -->
+<?php
+$host = 'localhost';
+$user = 'root';
+$password = '';
+$dbname = 'sekolah';
+
+// Membuat koneksi
+$conn = new mysqli($host, $user, $password, $dbname);
+
+// Memeriksa koneksi
+if ($conn->connect_error) {
+    die("Koneksi gagal: " . $conn->connect_error);
+}
+
+// Update (Edit Data)
+if (isset($_GET['edit'])) {
+    $id_absensi = $_GET['edit'];
+    $sql_edit = "SELECT * FROM absensi WHERE id_absensi = $id_absensi";
+    $result_edit = $conn->query($sql_edit);
+    $row_edit = $result_edit->fetch_assoc();
+
+    if ($row_edit) {
+        ?>
+        <!DOCTYPE html>
+        <html lang="id">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Edit Absensi</title>
+            <!-- Bootstrap CSS -->
+            <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        </head>
+        <body>
+
+        <div class="container mt-5">
+            <h2>Edit Absensi</h2>
+            <form method="POST" action="">
+                <input type="hidden" name="id_absensi" value="<?php echo $row_edit['id_absensi']; ?>">
+                <div class="form-group">
+                    <label for="status">Status:</label>
+                    <select name="status" class="form-control" required>
+                        <option value="Hadir" <?php echo ($row_edit['status'] == 'Hadir' ? 'selected' : ''); ?>>Hadir</option>
+                        <option value="Tidak Hadir" <?php echo ($row_edit['status'] == 'Tidak Hadir' ? 'selected' : ''); ?>>Tidak Hadir</option>
+                    </select>
+                </div>
+                <button type="submit" name="update" class="btn btn-primary">Update</button>
+                <a href="index.php" class="btn btn-secondary">Kembali</a>
+            </form>
+        </div>
+
+        <!-- Bootstrap JS dan dependensi -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        </body>
+        </html>
+        <?php
+    }
+}
+
+// Update (Proses Edit)
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
+    $id_absensi = $_POST['id_absensi'];
+    $status = $_POST['status'];
+
+    $sql_update = "UPDATE absensi SET status = '$status' WHERE id_absensi = $id_absensi";
+    if ($conn->query($sql_update) === TRUE) {
+        echo "<div class='alert alert-success' role='alert'>Data berhasil diperbarui!</div>";
+        header("Location: pertemuan4_1.php"); // Kembali ke halaman utama setelah berhasil
+        exit();
+    } else {
+        echo "<div class='alert alert-danger' role='alert'>Error: " . $sql_update . "<br>" . $conn->error . "</div>";
+    }
+}
+
+// Menutup koneksi
+$conn->close();
+?>
 
