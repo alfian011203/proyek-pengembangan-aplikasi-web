@@ -281,5 +281,11 @@ class Siswa extends CI_Controller {
 
 
 Pembahasan MVC CI :
-
+CodeIgniter menerapkan arsitektur MVC (Model-View-Controller) untuk memisahkan logika aplikasi menjadi tiga komponen utama:
+Model, View, dan Controller. Model bertugas menangani interaksi dengan database, seperti melakukan operasi CRUD untuk
+mengelola data. View berfungsi menampilkan data kepada pengguna melalui antarmuka yang dirancang, sementara Controller
+menghubungkan Model dan View, mengatur alur aplikasi dengan menerima permintaan pengguna, mengambil data dari Model jika 
+diperlukan, dan meneruskannya ke View untuk ditampilkan. Dengan memisahkan logika bisnis, antarmuka, dan alur kontrol, 
+CodeIgniter memastikan aplikasi lebih terstruktur, mudah dikelola, dan memungkinkan pengembangan yang fleksibel karena
+setiap komponen dapat dimodifikasi atau diuji secara independen tanpa mempengaruhi keseluruhan aplikasi.
 Pembahasan Konfigurasi CI :
