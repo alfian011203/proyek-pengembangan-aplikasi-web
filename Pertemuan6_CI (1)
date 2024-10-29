@@ -149,9 +149,80 @@
 
 <!-- Controller -->
 // Absensi.php
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
+class Absensi extends CI_Controller {
+	function __construct() {
+		parent::__construct();
+		$this->load->model('model_absensi');
+		$this->load->model('model_siswa');
+	}
+
+	public function index()
+	{
+		$data['absensi'] = $this->model_absensi->index();
+		// var_dump($data);
+		// exit();
+
+		$this->load->view('absensi/index', $data);
+	}
+
+	public function create() {
+		$data['siswa'] = $this->model_siswa->index();
+		$this->load->view('absensi/create', $data);
+	}
+
+	public function store() {
+		$data = array(
+			'id_siswa' => $this->input->post('id_siswa'),
+			'tanggal' => $this->input->post('tanggal'),
+			'status' => $this->input->post('status')
+		);
+
+		$this->model_absensi->store($data);
+		redirect('absensi/index');
+	}
+
+	public function show($id) {
+		$data['absensi'] = $this->model_absensi->show($id);
+		$this->load->view('absensi/show', $data);
+	}
+
+	public function update($id) {
+		$data = array(
+			'status' => $this->input->post('status')
+		);
+
+		$this->model_absensi->update($id, $data);
+		redirect('absensi/index');
+	}
+
+	public function delete($id) {
+		$this->model_absensi->delete($id);
+		redirect('absensi/index');
+	}
+}
 // Siswa.php
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
+class Siswa extends CI_Controller {
+	function __construct() {
+		parent::__construct();
+		$this->load->model('model_absensi');
+		$this->load->model('model_siswa');
+	}
+
+	function store() {
+		$data = array(
+			'nama_siswa' => $this->input->post('nama_siswa')
+		);
+
+		$this->model_siswa->store($data);
+		redirect('absensi/create');
+	}
+}
 
 
 
