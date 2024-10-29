@@ -289,3 +289,8 @@ diperlukan, dan meneruskannya ke View untuk ditampilkan. Dengan memisahkan logik
 CodeIgniter memastikan aplikasi lebih terstruktur, mudah dikelola, dan memungkinkan pengembangan yang fleksibel karena
 setiap komponen dapat dimodifikasi atau diuji secara independen tanpa mempengaruhi keseluruhan aplikasi.
 Pembahasan Konfigurasi CI :
+Konfigurasi CodeIgniter mencakup pengaturan baseURL, zona waktu, dan kunci enkripsi di App.php; 
+konfigurasi koneksi database di Database.php; serta penggunaan .htaccess untuk membuat URL lebih bersih. Pada Autoload.php, 
+library dan helper yang sering digunakan dapat dimuat otomatis. Pengaturan logging dilakukan di Logger.php, 
+sedangkan Email.php mengonfigurasi protokol untuk pengiriman email, dan Session.php menentukan metode penyimpanan sesi. 
+Pastikan juga mode lingkungan diatur sebagai development atau production di index.php untuk menjaga keamanan dan performa aplikasi.
