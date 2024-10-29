@@ -1,1 +1,58 @@
-<!-- -->
+<!-- Source Code -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Absensi</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Input Absensi</h1>
+    <?= form_open('absensi/store') ?>
+        <div class="form-group">
+            <label for="id_siswa">Nama Siswa:</label>
+            <select name="id_siswa" class="form-control" required>
+                <?php if (count($siswa) > 0): ?>
+                    <?php foreach ($siswa as $sws): ?>
+                        <option value="<?php echo $sws['id_siswa']; ?>"><?php echo $sws['nama_siswa']; ?></option>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="tanggal">Tanggal:</label>
+            <input type="date" name="tanggal" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="status">Status:</label>
+            <select name="status" class="form-control" required>
+                <option value="Hadir">Hadir</option>
+                <option value="Tidak Hadir">Tidak Hadir</option>
+            </select>
+        </div>
+        <button type="submit" name="create_absensi" class="btn btn-primary">Tambah Absensi</button>
+    </form>
+    <hr>
+    <h2 class="mt-5">Tambah Siswa Baru</h2>
+	<?= form_open('siswa/store') ?>
+        <div class="form-group">
+            <label for="nama_siswa">Nama Siswa:</label>
+            <input type="text" name="nama_siswa" class="form-control" required>
+        </div>
+        <button type="submit" name="create_siswa" class="btn btn-primary">Tambah Siswa</button>
+    </form>
+</div>
+<!-- Bootstrap JS dan dependensi -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+<!-- Pembahasan Menampilkan data CI -->
+
+<!-- cara kerja pada framework CI -->
