@@ -56,3 +56,11 @@
 <!-- Pembahasan Menampilkan data CI -->
 
 <!-- cara kerja pada framework CI -->
+Pada framework CodeIgniter, proses kerja dimulai saat pengguna mengirimkan permintaan melalui URL, yang kemudian diteruskan
+oleh sistem routing ke Controller yang sesuai. Controller ini bertindak sebagai penghubung utama, menentukan apakah perlu 
+berinteraksi dengan Model untuk pengambilan atau pengolahan data, atau langsung menampilkan tampilan dengan View. Jika data 
+diperlukan, Controller mengakses Model untuk menjalankan operasi pada database dan mendapatkan data yang relevan, lalu
+mengirimkan data ini ke View untuk disajikan kepada pengguna dalam bentuk antarmuka yang dapat dilihat. Setelah semua elemen
+tampil siap, hasil akhirnya dikirimkan ke browser pengguna sebagai respon. Dalam alur ini, setiap komponen—Model, View,
+dan Controller—memiliki fungsi khusus, sehingga keseluruhan proses menjadi lebih mudah dipelihara, dikembangkan, dan
+diperbarui.
