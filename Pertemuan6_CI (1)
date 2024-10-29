@@ -288,9 +288,15 @@ menghubungkan Model dan View, mengatur alur aplikasi dengan menerima permintaan 
 diperlukan, dan meneruskannya ke View untuk ditampilkan. Dengan memisahkan logika bisnis, antarmuka, dan alur kontrol, 
 CodeIgniter memastikan aplikasi lebih terstruktur, mudah dikelola, dan memungkinkan pengembangan yang fleksibel karena
 setiap komponen dapat dimodifikasi atau diuji secara independen tanpa mempengaruhi keseluruhan aplikasi.
+
 Pembahasan Konfigurasi CI :
 Konfigurasi CodeIgniter mencakup pengaturan baseURL, zona waktu, dan kunci enkripsi di App.php; 
 konfigurasi koneksi database di Database.php; serta penggunaan .htaccess untuk membuat URL lebih bersih. Pada Autoload.php, 
 library dan helper yang sering digunakan dapat dimuat otomatis. Pengaturan logging dilakukan di Logger.php, 
 sedangkan Email.php mengonfigurasi protokol untuk pengiriman email, dan Session.php menentukan metode penyimpanan sesi. 
 Pastikan juga mode lingkungan diatur sebagai development atau production di index.php untuk menjaga keamanan dan performa aplikasi.
+
+Pemabahasan Create CI :
+Fungsi `create` pada CodeIgniter memungkinkan penambahan data baru ke database dengan menampilkan form input yang telah disiapkan di view. 
+Ketika pengguna mengirimkan form, controller melakukan validasi data. Jika data valid, method `store` di controller akan mengirimkan data tersebut ke model, 
+di mana fungsi `insert` bertugas menyimpannya ke tabel `absensi`. Setelah proses penyimpanan berhasil, pengguna akan dialihkan kembali ke halaman utama daftar absensi.
