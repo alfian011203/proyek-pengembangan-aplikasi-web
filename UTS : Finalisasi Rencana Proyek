@@ -1,1 +1,13 @@
-tes
+1. judul/topik final proyek kelompok
+Sistem Absensi Siswa
+
+2. Fitur aplikasi
+ # sisi user
+  - Halaman Beranda : 
+    Tampilan awal aplikasi yang memberikan gambaran umum tentang aplikasi dan fitur-fitur utamanya.
+  - Registrasi dan Login: 
+    Memungkinkan pengguna membuat akun baru dan masuk ke dalam aplikasi.
+  - Profil Pengguna: 
+    Tempat pengguna mengelola informasi pribadi mereka.
+  - Pencarian: 
+    Memungkinkan pengguna mencari data kehadiran siswa.
