@@ -11,3 +11,19 @@ Sistem Absensi Siswa
     Tempat pengguna mengelola informasi pribadi mereka.
   - Pencarian: 
     Memungkinkan pengguna mencari data kehadiran siswa.
+
+# sisi admin
+  - Dashboard: 
+  Tampilan utama admin yang memberikan gambaran umum tentang kinerja aplikasi, seperti jumlah pengguna, dan lainnya.
+  - Manajemen Pengguna: 
+  Memungkinkan admin mengelola akun pengguna, seperti menambahkan, mengedit, atau menghapus pengguna.
+  - Laporan: 
+  Menyediakan laporan data yang berguna untuk analisis tingkat kehadiran siswa di kelas
+
+3. Rencana jumlah tabel
+  Kurang lebih 5 tabel
+
+4. Tuliskan Rencana kegiatan (dalam menyelesaikan proyek) pada minggu 
+Kegiatan ke-8 (12-18 Nov 2024) : Membuat tampilan registrasi dan login 
+Kegiatan ke-9 (19-25 Nov 2024) : Membuat tampilan dashboard dan profil pengguna
+Kegiatan ke-10 (26 Nov -2 Des 2024) : Menambahkan fitur pencarian
